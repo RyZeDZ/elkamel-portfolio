@@ -62,4 +62,4 @@ You need to have Node.js (v18+) and npm installed on your machine.
 
 ## Contact
 
-Bensmaine Mohamed El Kamel - Find me on [LinkedIn](your-linkedin-url) or reach out via [Email](mailto:your-email@example.com).
+Bensmaine Mohamed El Kamel - Find me on [LinkedIn](your-linkedin-url) or reach out via [Email](mailto:bensmaine.kamel1@gmail.com).
