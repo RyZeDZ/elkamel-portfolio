@@ -1,37 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio - elkamel.dev
 
-## Getting Started
+This repository contains the source code for my personal portfolio website, built to showcase my skills as a software engineer and to serve as a central hub for my professional work.
 
-First, run the development server:
+The site is designed with a "Dynamic & Polished" aesthetic, focusing on a premium user experience with subtle animations, interactive elements, and a clean, responsive layout.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Live Site:** [**https://elkamel.dev**](https://elkamel.dev)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Interactive Hero Section:** An animated particle background creates a unique and engaging first impression.
+- **Smooth Scrolling & Navigation:** A "glassmorphism" navbar with a fully functional mobile menu provides seamless navigation.
+- **Dynamic Components:** Interactive sections for my professional journey and project showcase, built with Framer Motion.
+- **Custom Cursor & Scrollbar:** A branded, interactive cursor and a styled scrollbar for a polished, cohesive feel.
+- **Fully Responsive:** Meticulously tested on a range of devices, from small mobile screens to large desktops.
+- **SEO Optimized:** Built with Next.js and includes all necessary metadata for search engine visibility and social sharing.
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+This project was built using a modern, high-performance tech stack:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (v4 with `@theme`)
+- **Animation:** [Framer Motion](https://www.framer.com/motion/)
+- **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
+- **Deployment:** [Vercel](https://vercel.com/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Running Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To get a local copy up and running, follow these simple steps.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# elkamel-portfolio
+### Prerequisites
+
+You need to have Node.js (v18+) and npm installed on your machine.
+
+### Installation
+
+1.  Clone the repository:
+    ```sh
+    git clone https://github.com/your-username/elkamel-portfolio.git
+    ```
+2.  Navigate to the project directory:
+    ```sh
+    cd elkamel-portfolio
+    ```
+3.  Install NPM packages:
+    ```sh
+    npm install
+    ```
+4.  Run the development server:
+    ```sh
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+---
+
+## Contact
+
+Bensmaine Mohamed El Kamel - Find me on [LinkedIn](your-linkedin-url) or reach out via [Email](mailto:your-email@example.com).
