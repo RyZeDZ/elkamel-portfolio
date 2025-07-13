@@ -42,7 +42,7 @@ You need to have Node.js (v18+) and npm installed on your machine.
 
 1.  Clone the repository:
     ```sh
-    git clone https://github.com/your-username/elkamel-portfolio.git
+    git clone https://github.com/RyZeDZ/elkamel-portfolio.git
     ```
 2.  Navigate to the project directory:
     ```sh
@@ -62,4 +62,4 @@ You need to have Node.js (v18+) and npm installed on your machine.
 
 ## Contact
 
-Bensmaine Mohamed El Kamel - Find me on [LinkedIn](your-linkedin-url) or reach out via [Email](mailto:bensmaine.kamel1@gmail.com).
+Bensmaine Mohamed El Kamel - Find me on [LinkedIn](https://www.linkedin.com/in/elkamelbens) or reach out via [Email](mailto:bensmaine.kamel1@gmail.com).

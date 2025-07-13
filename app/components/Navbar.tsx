@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 const navLinks = [
   { to: "#", label: "Home" },
@@ -9,7 +9,7 @@ const navLinks = [
   { to: "#contact", label: "Contact" },
 ];
 
-const mobileMenuVariants = {
+const mobileMenuVariants: Variants = {
   hidden: {
     y: "-100%",
     transition: { type: "tween", duration: 0.4, ease: "easeOut" },
@@ -20,12 +20,18 @@ const mobileMenuVariants = {
   },
 };
 
-const mobileLinkVariants = {
+const mobileLinkVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
 
-const HamburgerIcon = ({ isOpen, toggle }) => (
+const HamburgerIcon = ({
+  isOpen,
+  toggle,
+}: {
+  isOpen: boolean;
+  toggle: () => void;
+}) => (
   <button onClick={toggle} className="relative z-50 w-8 h-8">
     <motion.div
       className="absolute top-1/2 left-0 w-full h-0.5 bg-text"

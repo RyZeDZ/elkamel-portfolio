@@ -7,7 +7,16 @@ import { FaLink, FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { sectionVariants } from "../utils/animation";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  image: string | null;
+  tags: string[];
+  liveUrl?: string;
+  sourceUrl?: string;
+};
+
+const projects: Project[] = [
   {
     title: "Cognis - Collaborative hub for CS students",
     description:
@@ -33,7 +42,7 @@ const projects = [
     tags: ["Python", "discord.py", "SQLite"],
     liveUrl:
       "https://discord.com/oauth2/authorize?client_id=858328160654983168&permissions=379904&scope=applications.commands+bot",
-    sourceUrl: null,
+    sourceUrl: undefined,
   },
 ];
 
@@ -44,14 +53,7 @@ const ProjectCard = ({
   tags,
   liveUrl,
   sourceUrl,
-}: {
-  title: string;
-  description: string;
-  image: string | null;
-  tags: string[];
-  liveUrl?: string;
-  sourceUrl?: string;
-}) => {
+}: Project) => {
   const cardRef = React.useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
 
