@@ -6,7 +6,17 @@ import { FaLaptopCode, FaServer, FaRobot } from "react-icons/fa";
 import { sectionVariants } from "../utils/animation";
 import { motion } from "framer-motion";
 
-const ExpertiseCard = ({ title, description, technologies, icon }) => (
+const ExpertiseCard = ({
+  title,
+  description,
+  technologies,
+  icon,
+}: {
+  title: string;
+  description: string;
+  technologies: string[];
+  icon: React.ReactNode;
+}) => (
   <div
     className="bg-card-bg p-8 rounded-lg border border-border 
                   hover:border-accent transition-all duration-300 group"

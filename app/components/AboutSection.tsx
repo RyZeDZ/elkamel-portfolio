@@ -4,7 +4,7 @@ import SectionHeader from "./SectionHeader";
 import { motion } from "framer-motion";
 import { sectionVariants } from "../utils/animation";
 
-const StatCard = ({ number, text }) => (
+const StatCard = ({ number, text }: { number: string; text: string }) => (
   <div className="bg-card-bg p-6 rounded-lg border border-border text-center">
     <div className="text-4xl font-bold text-accent">{number}</div>
     <div className="text-sm mt-2 text-text/80">{text}</div>

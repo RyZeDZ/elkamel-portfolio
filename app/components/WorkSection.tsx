@@ -44,6 +44,13 @@ const ProjectCard = ({
   tags,
   liveUrl,
   sourceUrl,
+}: {
+  title: string;
+  description: string;
+  image: string | null;
+  tags: string[];
+  liveUrl?: string;
+  sourceUrl?: string;
 }) => {
   const cardRef = React.useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
