@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
-import { FaLink, FaGithub } from "react-icons/fa";
+import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { sectionVariants } from "../utils/animation";
 
@@ -75,13 +75,12 @@ const ProjectCard = ({
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative rounded-lg p-[2px] overflow-hidden transition-all duration-300"
+      className="relative rounded-lg p-[1px] overflow-hidden transition-all duration-300 group"
       style={{
-        background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, var(--color-accent), transparent 40%)`,
+        background: `radial-gradient(350px circle at ${mousePosition.x}px ${mousePosition.y}px, var(--color-accent), transparent 40%)`,
       }}
     >
-      <div className="bg-card-bg/80 backdrop-blur-sm rounded-md h-full flex flex-col">
-        {/* Smart Image Container */}
+      <div className="bg-card-bg rounded-[7px] h-full flex flex-col">
         <div className="relative h-52 w-full overflow-hidden bg-background/50">
           {image ? (
             <Image
@@ -91,34 +90,37 @@ const ProjectCard = ({
               className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           ) : (
-            <div className="h-full w-full flex items-center justify-center">
-              <h4 className="text-2xl font-bold text-subtle">{title}</h4>
+            <div className="h-full w-full flex items-center justify-center p-4">
+              <h4 className="text-2xl font-bold text-subtle text-center">
+                {title}
+              </h4>
             </div>
           )}
         </div>
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-xl font-bold text-text mb-2">{title}</h3>
-          <p className="text-text/70 mb-4 flex-grow">{description}</p>
+          <p className="text-subtle mb-4 flex-grow text-[15px] leading-relaxed">
+            {description}
+          </p>
           <div className="flex flex-wrap gap-2 mb-6">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="bg-background/70 border border-border px-3 py-1 rounded-full text-xs text-text/80"
+                className="bg-accent/10 border border-accent/20 text-accent font-medium px-3 py-1 rounded-full text-xs"
               >
                 {tag}
               </span>
             ))}
           </div>
-          {/* The smart links div */}
-          <div className="flex space-x-4 mt-auto pt-4">
+          <div className="flex items-center gap-6 mt-auto pt-4 border-t border-border/50">
             {liveUrl && (
               <a
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-subtle hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-subtle hover:text-text transition-colors text-sm"
               >
-                <FaLink className="mr-2" /> Live Demo
+                <ExternalLink size={16} /> Live Demo
               </a>
             )}
             {sourceUrl && (
@@ -126,9 +128,9 @@ const ProjectCard = ({
                 href={sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-subtle hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-subtle hover:text-text transition-colors text-sm"
               >
-                <FaGithub className="mr-2" /> Source
+                <Github size={16} /> Source
               </a>
             )}
           </div>
@@ -142,19 +144,17 @@ export default function WorkSection() {
   return (
     <section id="work" className="py-20 md:py-32 bg-background">
       <motion.div
-        className="container mx-auto ..."
+        className="container mx-auto px-6"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="container mx-auto px-4 md:px-8">
-          <SectionHeader title="Selected Work" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard key={index} {...project} />
-            ))}
-          </div>
+        <SectionHeader title="Selected Work" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} {...project} />
+          ))}
         </div>
       </motion.div>
     </section>
