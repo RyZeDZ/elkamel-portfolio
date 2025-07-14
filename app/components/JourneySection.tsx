@@ -25,7 +25,8 @@ const journeyData = [
   },
   {
     label: "Computer Science Student",
-    title: "Larbi Ben M'hidi",
+    title: "Computer Science Student",
+    company: "Larbi Ben M'hidi University",
     date: "2024 – Present",
     content:
       "Building a deep theoretical foundation in algorithms, data structures, and software engineering principles while consistently achieving top academic standing in my class.",
