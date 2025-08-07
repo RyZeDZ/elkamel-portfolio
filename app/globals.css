@@ -66,3 +66,9 @@ html {
     background-position: 0% 50%;
   }
 }
+
+@media (max-width: 768px) {
+  .custom-cursor-container {
+    display: none;
+  }
+}

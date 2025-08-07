@@ -1,73 +1,176 @@
+// components/CustomCursor.tsx
 "use client";
+
 import React, { useState, useEffect } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+interface HoveredElementInfo {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+const Bracket = ({ side }: { side: "left" | "right" }) => (
+  <svg
+    width="12"
+    height="24"
+    viewBox="0 0 12 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {side === "left" ? (
+      <path
+        d="M9 4L4 9.5L9 15"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    ) : (
+      <path
+        d="M3 4L8 9.5L3 15"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    )}
+  </svg>
+);
 
 export default function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHoveringLink, setIsHoveringLink] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const [hoveredElementInfo, setHoveredElementInfo] =
+    useState<HoveredElementInfo | null>(null);
 
   useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const mouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const onMouseOver = (e: MouseEvent) => {
-      if ((e.target as HTMLElement).closest("a, button")) {
-        setIsHoveringLink(true);
+    // --- UPGRADED LOGIC START ---
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Use .closest() to find the nearest interactive parent (a or button)
+      const interactiveParent = target.closest("a, button");
+
+      if (interactiveParent) {
+        const rect = interactiveParent.getBoundingClientRect();
+        setHoveredElementInfo({
+          x: rect.left,
+          y: rect.top,
+          width: rect.width,
+          height: rect.height,
+        });
       }
     };
 
-    const onMouseOut = (e: MouseEvent) => {
-      if ((e.target as HTMLElement).closest("a, button")) {
-        setIsHoveringLink(false);
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Also use .closest() here to ensure we don't exit prematurely
+      const interactiveParent = target.closest("a, button");
+
+      if (interactiveParent) {
+        setHoveredElementInfo(null);
       }
     };
+    // --- UPGRADED LOGIC END ---
 
-    window.addEventListener("mousemove", onMouseMove);
-    document.body.addEventListener("mouseover", onMouseOver);
-    document.body.addEventListener("mouseout", onMouseOut);
+    window.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseover", handleMouseOver);
+    document.addEventListener("mouseout", handleMouseOut);
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      document.body.removeEventListener("mouseover", onMouseOver);
-      document.body.removeEventListener("mouseout", onMouseOut);
+      window.removeEventListener("mousemove", mouseMove);
+      document.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseout", handleMouseOut);
     };
   }, []);
 
-  const cursorVariants: Variants = {
-    default: {
-      height: 32,
-      width: 32,
-      border: "2px solid var(--color-accent)",
-      backgroundColor: "transparent",
-      transition: { type: "spring", stiffness: 500, damping: 30 },
-    },
-    hovering: {
-      height: 50,
-      width: 50,
-      backgroundColor: "var(--color-accent)",
-      border: "2px solid var(--color-accent)",
-      transition: { type: "spring", stiffness: 300, damping: 20 },
-    },
-  };
+  const bracketHeight = 24;
 
   return (
-    <motion.div
-      className="hidden md:flex items-center justify-center fixed top-0 left-0 rounded-full pointer-events-none z-[100]"
-      style={{
-        left: position.x,
-        top: position.y,
-        translateX: "-50%",
-        translateY: "-50%",
-      }}
-      variants={cursorVariants}
-      animate={isHoveringLink ? "hovering" : "default"}
-    >
+    <div className="custom-cursor-container">
+      {/* The Default Pointer (disappears on hover) */}
       <motion.div
-        className="w-2 h-2 rounded-full bg-accent"
-        animate={{ scale: isHoveringLink ? 0 : 1 }}
-        transition={{ duration: 0.2 }}
-      />
-    </motion.div>
+        className="fixed top-0 left-0 pointer-events-none z-50 text-accent flex"
+        style={{ x: mousePosition.x - 12, y: mousePosition.y - 12 }}
+        animate={{ opacity: hoveredElementInfo ? 0 : 1 }}
+        transition={{ duration: 0.1, ease: "linear" }}
+      >
+        <Bracket side="left" />
+        <Bracket side="right" />
+      </motion.div>
+
+      {/* The Attached Brackets (appear on hover) */}
+      <AnimatePresence>
+        {hoveredElementInfo && (
+          <>
+            {/* --- Left Bracket (Your coordinates are preserved) --- */}
+            <motion.div
+              key="left-bracket"
+              className="fixed pointer-events-none z-50 text-accent"
+              initial={{
+                x: mousePosition.x - 6,
+                y: mousePosition.y - bracketHeight / 2,
+                height: bracketHeight,
+                opacity: 0,
+              }}
+              animate={{
+                x: hoveredElementInfo.x - 14,
+                y:
+                  hoveredElementInfo.y +
+                  hoveredElementInfo.height / 2 -
+                  bracketHeight / 2 +
+                  2,
+                height: hoveredElementInfo.height,
+                opacity: 1,
+              }}
+              exit={{
+                x: mousePosition.x - 6,
+                y: mousePosition.y - bracketHeight / 2,
+                height: bracketHeight,
+                opacity: 0,
+              }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
+              <Bracket side="left" />
+            </motion.div>
+
+            {/* --- Right Bracket (Your coordinates are preserved) --- */}
+            <motion.div
+              key="right-bracket"
+              className="fixed pointer-events-none z-50 text-accent"
+              initial={{
+                x: mousePosition.x - 6,
+                y: mousePosition.y - bracketHeight / 2,
+                height: bracketHeight,
+                opacity: 0,
+              }}
+              animate={{
+                x: hoveredElementInfo.x + hoveredElementInfo.width + 2,
+                y:
+                  hoveredElementInfo.y +
+                  hoveredElementInfo.height / 2 -
+                  bracketHeight / 2 +
+                  2,
+                height: hoveredElementInfo.height,
+                opacity: 1,
+              }}
+              exit={{
+                x: mousePosition.x - 6,
+                y: mousePosition.y - bracketHeight / 2,
+                height: bracketHeight,
+                opacity: 0,
+              }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
+              <Bracket side="right" />
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
