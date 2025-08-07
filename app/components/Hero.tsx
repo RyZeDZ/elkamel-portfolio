@@ -3,14 +3,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ParticleBackground from "./ParticleBackground";
+import ScrollPrompt from "./ScrollPrompt";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full flex flex-col justify-center items-start text-left p-8 md:p-16 lg:p-24 overflow-hidden">
+    <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center text-center p-8 md:p-16 lg:p-24 overflow-hidden">
       <ParticleBackground />
       <div className="relative z-10">
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -29,6 +30,7 @@ export default function Hero() {
           Bensmaine Mohamed // Software Engineer
         </motion.p>
       </div>
+      <ScrollPrompt />
     </section>
   );
 }

@@ -80,7 +80,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex space-x-8 text-text/80">
+          <div className="hidden md:flex space-x-10 text-text/80">
             {navLinks.map((link) => (
               <a
                 key={link.to}
