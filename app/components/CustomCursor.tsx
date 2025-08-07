@@ -1,4 +1,3 @@
-// components/CustomCursor.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -49,10 +48,8 @@ export default function CustomCursor() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    // --- UPGRADED LOGIC START ---
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Use .closest() to find the nearest interactive parent (a or button)
       const interactiveParent = target.closest("a, button");
 
       if (interactiveParent) {
@@ -68,14 +65,12 @@ export default function CustomCursor() {
 
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Also use .closest() here to ensure we don't exit prematurely
       const interactiveParent = target.closest("a, button");
 
       if (interactiveParent) {
         setHoveredElementInfo(null);
       }
     };
-    // --- UPGRADED LOGIC END ---
 
     window.addEventListener("mousemove", mouseMove);
     document.addEventListener("mouseover", handleMouseOver);
@@ -92,7 +87,6 @@ export default function CustomCursor() {
 
   return (
     <div className="custom-cursor-container">
-      {/* The Default Pointer (disappears on hover) */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-50 text-accent flex"
         style={{ x: mousePosition.x - 12, y: mousePosition.y - 12 }}
@@ -103,11 +97,9 @@ export default function CustomCursor() {
         <Bracket side="right" />
       </motion.div>
 
-      {/* The Attached Brackets (appear on hover) */}
       <AnimatePresence>
         {hoveredElementInfo && (
           <>
-            {/* --- Left Bracket (Your coordinates are preserved) --- */}
             <motion.div
               key="left-bracket"
               className="fixed pointer-events-none z-50 text-accent"
@@ -138,7 +130,6 @@ export default function CustomCursor() {
               <Bracket side="left" />
             </motion.div>
 
-            {/* --- Right Bracket (Your coordinates are preserved) --- */}
             <motion.div
               key="right-bracket"
               className="fixed pointer-events-none z-50 text-accent"
