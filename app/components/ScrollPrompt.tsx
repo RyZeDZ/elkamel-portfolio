@@ -1,10 +1,9 @@
-// components/ScrollPrompt.tsx
 "use client";
 
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowDown } from "lucide-react"; // Using a clean icon
+import { ArrowDown } from "lucide-react";
 
 export default function ScrollPrompt() {
   return (
@@ -15,7 +14,7 @@ export default function ScrollPrompt() {
       className="absolute bottom-10 left-1/2 -translate-x-1/2"
     >
       <Link
-        href="#about" // Scrolls to your About section, the next logical step
+        href="#about"
         aria-label="Scroll to my work"
         className="
           flex flex-col items-center gap-2 text-subtle 
