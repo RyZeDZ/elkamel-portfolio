@@ -4,7 +4,7 @@ const timeline = [
     role: "Co-founder & technical lead",
     org: "GuppyNodes",
   },
-  { year: "2024 — now", role: "Co-founder", org: "Nexara" },
+  { year: "2026 — now", role: "Co-founder", org: "Nexara" },
   { year: "2025 — now", role: "Tech lead", org: "AI & Robotics Club" },
   { year: "2025", role: "Network infrastructure intern", org: "Sonatrach" },
   {
